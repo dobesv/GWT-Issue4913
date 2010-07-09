@@ -20,16 +20,25 @@ public class Generator extends com.google.gwt.core.ext.Generator {
 		try {
 			cls = context.getTypeOracle().getType(TestSubclassToFind.class.getName());
 			System.out.println("Found class .... "+cls);
+			System.out.println("Methods of "+cls.getName());
+			for(JMethod m : cls.getMethods()) {
+				System.out.println(m);
+			}
+			System.out.println("Methods of the super class of "+cls.getName()+" ("+cls.getSuperclass().getName()+")");
+			for(JMethod m : cls.getSuperclass().getMethods()) {
+				System.out.println(m);
+			}
+			JClassType cls2 = context.getTypeOracle().getType(TestClassToFind.class.getName());
+			System.out.println("Methods of class "+cls2.getName());
+			for(JMethod m : cls2.getMethods()) {
+				System.out.println(m);
+			}
+			
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			throw new UnableToCompleteException();
 		}
-		for(JMethod m : cls.getMethods()) {
-			System.out.println(m);
-		}
-		for(JMethod m : cls.getSuperclass().getMethods()) {
-			System.out.println(m);
-		}
+		
 		return null;
 	}
 
